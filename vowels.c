@@ -9,31 +9,42 @@ int main(void)
 {
     char string1[] = "hello";
 
+    removevowels(string1);
+
     return 0;
 }
 
 int removevowels(char string[])
 {
-    int position = 0;
-    int len = strlen(string);
-    char temp[] = "";
+    int read = 0;
+    int write = 0;
     char vowels[] = "aeiou";
-
-    while (string[position] != '\0')
+    int lenvowels = strlen(vowels);
+    // the while loop checks each character until it reaches null
+    while (string[read] != '\0')
     {
-        for (int = 0; i < vowels; i++)
+        int i;
+        // i is checked against all vowels
+        for (i = 0; i < lenvowels; i++)
         {
-            if (string[position] == i)
+            // if we find a vowel the inner loop breaks
+            if (string[read] == vowels[i])
             {
-                int newposition = position;
-                while (string[newposition] != '\0')
-                {
-                    string[newposition] = string[newposition + 1];
-                    newposition++;
-                }
+                break;
             }
-            else
-                position++;
         }
+        // if the loop finished without breaking, i will equal lenvowels
+        // meaning no vowel was found
+        if (i == lenvowels)
+        {
+            // the constant is written into the succesive position
+            string[write] = string[read];
+            // the position is moved one to the right
+            write++;
+        }
+        read++; // the read position is moved one to the right
     }
+    // again, this loops until the null terminator is reached
+    string[write] = '\0';
+    printf(string);
 }
