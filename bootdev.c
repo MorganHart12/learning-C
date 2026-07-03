@@ -45,8 +45,34 @@ int can_access_registry(int is_premium, int reputation, int has_2fa)
         return false;
     }
 }
+void print_numbers_reverse(int start, int end)
+{
+    int i = start;
+    while (i >= end)
+    {
+        printf("%d\n", i);
+        i--;
+    }
+}
+
+void print_numbers_reverse(int start, int end)
+{
+    do
+    {
+        printf("%d\n", start);
+        start--;
+    } while (start >= end);
+}
 
 int main(void)
 {
-    return 0;
+    printf("sizeof(char)   = %zu\n", sizeof(char));
+    printf("sizeof(bool)   = %zu\n", sizeof(bool));
+    printf("sizeof(int)   = %zu\n", sizeof(int));
+    printf("sizeof(float)   = %zu\n", sizeof(float));
+    printf("sizeof(double)   = %zu\n", sizeof(double));
+    printf("sizeof(size_t)   = %zu\n", sizeof(size_t));
+}
+
+return 0;
 }
