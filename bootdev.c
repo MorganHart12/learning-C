@@ -76,3 +76,41 @@ int main(void)
 
 return 0;
 }
+
+#pragma once
+
+typedef struct Coordinate {
+  int x;
+  int y;
+  int z;
+} coordinate_t;
+
+coordinate_t new_coord(int x, int y, int z);
+coordinate_t scale_coordinate(coordinate_t coord, int factor);
+
+#include "coord.h"
+
+coordinate_t new_coord(int x, int y, int z) {
+  coordinate_t coord = {.x = x, .y = y, .z = z};
+
+  return coord;
+}
+
+#include "coord.h"
+
+struct Coordinate new_coord(int x, int y, int z) {
+  struct Coordinate coord = {.x = x, .y = y, .z = z};
+  return coord;
+}
+
+struct Coordinate scale_coordinate(struct Coordinate coord, int factor) {
+  return new_coord(coord.x * factor, coord.y * factor, coord.z * factor);
+}
+
+coordinate_t scale_coordinate(coordinate_t coord, int factor) {
+  coordinate_t scaled = coord;
+  scaled.x *= factor;
+  scaled.y *= factor;
+  scaled.z *= factor;
+
+  return scaled;
