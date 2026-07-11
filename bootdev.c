@@ -114,3 +114,36 @@ coordinate_t scale_coordinate(coordinate_t coord, int factor) {
   scaled.z *= factor;
 
   return scaled;
+
+  #include "coordinate.h"
+
+void coordinate_update_x(coordinate_t coord, int new_x) { coord.x = new_x; }
+
+coordinate_t coordinate_update_and_return_x(coordinate_t coord, int new_x) {
+  coord.x = new_x;
+  return coord;
+}
+
+typedef struct coordinate {
+  int x;
+  int y;
+  int z;
+} coordinate_t;
+
+void coordinate_update_x(coordinate_t coord, int new_x);
+coordinate_t coordinate_update_and_return_x(coordinate_t coord, int new_x);
+
+#include "exercise.h"
+
+codefile_t change_filetype(codefile_t *f, int new_filetype) {
+  codefile_t new_f = *f;
+  new_f.filetype = new_filetype;
+  return new_f;
+}
+
+typedef struct CodeFile {
+  int lines;
+  int filetype;
+} codefile_t;
+
+codefile_t change_filetype(codefile_t *f, int new_filetype);
