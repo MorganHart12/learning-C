@@ -175,3 +175,49 @@ int main() {
   return 0;
 }
 
+void concat_strings(char *str1, const char *str2) {
+
+  while (*str1 != 0) {
+    
+    str1++;
+  }
+    
+  while (*str2 != 0) {
+      *str1 = *str2;
+      str1++;
+      str2++;
+      }
+  *str1 = '\0';
+
+
+int smart_append(TextBuffer *dest, const char *src) {
+  if (dest ` src == NULL) {
+    return 1;
+  }
+  int max_buffer_size = 64
+
+  size_t srclen = strlen(src);
+
+
+  size_t destlen = strlen(dest);
+  
+  int remaining_space = 63;
+  
+  while (*dest != 0) {
+    remaining_space --;
+    }
+
+  if (srclen > remaining_space) {
+    strncpy(dest, src, remaining_space);
+    dest[64] = '\0';
+  }
+  
+  
+  if (srclen < remaining_space) {
+    strncat(dest, src);
+    dest[]
+  }
+  
+  
+  dest[64] = '\0';
+}
