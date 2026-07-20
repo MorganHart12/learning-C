@@ -190,34 +190,85 @@ void concat_strings(char *str1, const char *str2) {
   *str1 = '\0';
 
 
+
 int smart_append(TextBuffer *dest, const char *src) {
-  if (dest ` src == NULL) {
+  if (dest == NULL || src == NULL) {
     return 1;
   }
-  int max_buffer_size = 64
+  const int max_buffer_size = 64;
 
   size_t srclen = strlen(src);
 
+  int remaining_space = max_buffer_size - dest->length - 1;
 
-  size_t destlen = strlen(dest);
   
-  int remaining_space = 63;
-  
-  while (*dest != 0) {
-    remaining_space --;
-    }
+
 
   if (srclen > remaining_space) {
-    strncpy(dest, src, remaining_space);
-    dest[64] = '\0';
+    strncat(dest->buffer, src, remaining_space);
+    dest->length = max_buffer_size - 1;
+    return 1;
+  } else  {
+    strncat(dest->buffer, src, remaining_space);
+    dest->length += srclen;
+    return 0;
   }
   
-  
-  if (srclen < remaining_space) {
-    strncat(dest, src);
-    dest[]
-  }
-  
-  
-  dest[64] = '\0';
+
+
+employee_t create_employee(int id, char *name) {
+  employee_t emp = {
+      .id = id,
+      .name = name,
+      .department = NULL,
+  };
+  return emp;
 }
+
+department_t create_department(char *name) {
+  department_t dept = {
+      .name = name,
+      .manager = NULL,
+  };
+  return dept;
+}
+
+void assign_employee(employee_t *emp, department_t *department) {
+  emp->department = department;
+}
+
+void assign_manager(department_t *dept, employee_t *manager) {
+  dept->manager = manager;
+}
+
+
+}
+typedef struct SnekObject snekobject_t;
+
+typedef struct SnekObject {
+  char *name;
+  snekobject_t *child;
+} snekobject_t;
+
+snekobject_t new_node(char *name);
+
+typedef struct Employee employee_t;
+typedef struct Department department_t;
+
+struct Employee {
+  int id;
+  char *name;
+  department_t *department;
+};
+
+struct Department {
+  char *name;
+  employee_t *employee;  
+  employee_t *manager;
+};
+
+employee_t create_employee(int id, char *name);
+department_t create_department(char *name);
+
+void assign_employee(employee_t *emp, department_t *department);
+void assign_manager(department_t *dept, employee_t *manager);
